@@ -1,2 +1,2 @@
-# Alexa-IT-case
-Assignments to help learn how to create Amazon Alexa skills
+# alexa-it-case
+Some exercises for a C# alexa skill
