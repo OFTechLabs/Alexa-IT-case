@@ -2,7 +2,7 @@
 
 There are several skills here that need an implementation for them to work, the templates are there as are the unit tests to verify whether they work. The skills can be implemented in any way as long as the tests verify the skill works according to the requirements.
 
-The assignments listed below go from easy to more difficult, after finishing all assignments you should be capable of developing and publishing a Alexa Skill.
+The assignments listed below go from easy to more difficult, after finishing all assignments you should be capable of developing and publishing an Alexa Skill.
 
 ## HelloWorldSkill
 
@@ -12,8 +12,8 @@ The _HelloWorldskill_ should simply say Hello World!, that's it. Every skill how
 
 Hints:
 
-* The SkillResponse contains a ResponseBody which contains a OutputSpeech, the OutputSpeech contains a Text field which is a string that Alexa will articulate tot he user.
-* The SkillRequest contains a IntentRequest which contains an Intent and the Name of that Intent describes what the user intended to do. Several intents need to be handled:
+* The SkillResponse contains a ResponseBody which contains an OutputSpeech, the OutputSpeech contains a Text field which is a string that Alexa will articulate to the user.
+* The SkillRequest contains an IntentRequest which contains an Intent and the Name of that Intent describes what the user intended to do. Several intents need to be handled:
   * HelloWorld the user wants Alexa to say hello world!
   * AMAZON.CancelIntent the user wants Alexa to cancel the current activity, you should end the session here
   * AMAZON.StopIntent the user wants to stop the current activity, again end the session
@@ -31,11 +31,12 @@ Hints:
 
 ## FinancialPlanningSkill
 
-_Goal:_ have an actual conversation with the user and remeber and use the answers of previous questions.
+_Goal:_ have an actual conversation with the user and remember and use the answers of previous questions.
 
-The _FinancialPlanningSkill_ should have a conversation with the user to determine their financial goal, their current savings and their monthly contribution. At the end of the conversation Alexa should let the user know what the feasability of their goal is. Although the conversation and the algorithm for the feasability are greatly simplified, this describes the use case of one of our product: OPAL.
+The _FinancialPlanningSkill_ should have a conversation with the user to determine their financial goal, their current savings and their monthly contribution. 
+At the end of the conversation Alexa should let the user know what the feasability of their goal is. Although the conversation and the algorithm for the feasability are greatly simplified, this describes the use case of one of our products: OPAL.
 
 Hints:
 
 * The skill is entirely stateless, so every call you should determine what to ask the user next. And if all questions have been answered to return the feasability.
-  * The only way to _remember_ answers of a user is to place them in the _Session_ and then set _EndSession_ to false. In the session we can keep track of user answers untill we have gathered them all.
+  * The only way to _remember_ answers of a user is to place them in the _Session_ and then set _EndSession_ to false. In the session we can keep track of user answers until we have gathered them all.
