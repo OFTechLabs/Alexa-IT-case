@@ -119,5 +119,37 @@ namespace HelloWorldTests
 
             Assert.AreEqual(result.Response.ShouldEndSession, true);
         }
+
+        [TestMethod]
+        public void ShouldHandleLaunchRequest()
+        {
+            var skill = new HelloWorldSkill();
+
+            var request = new SkillRequest();
+            var launch = new LaunchRequest();
+            request.Request = launch;
+
+
+            var result = skill.FunctionHandler(request, null);
+            var output = result.Response.OutputSpeech;
+
+            Assert.AreEqual(result.Response.ShouldEndSession, true);
+        }
+
+        [TestMethod]
+        public void ShouldHandleSessionEnded()
+        {
+            var skill = new HelloWorldSkill();
+
+            var request = new SkillRequest();
+            var sessionEnded = new SessionEndedRequest();
+            request.Request = sessionEnded;
+
+
+            var result = skill.FunctionHandler(request, null);
+            var output = result.Response.OutputSpeech;
+
+            Assert.AreEqual(result.Response.ShouldEndSession, true);
+        }
     }
 }

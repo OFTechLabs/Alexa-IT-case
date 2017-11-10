@@ -3,7 +3,6 @@ using Alexa.NET.Response;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 
-
 namespace HelloWorldSkill
 {
     public class HelloWorldSkill
@@ -13,5 +12,4 @@ namespace HelloWorldSkill
             return null;
         }
     }
-
 }

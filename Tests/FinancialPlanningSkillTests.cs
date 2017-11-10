@@ -46,7 +46,7 @@ namespace FinancialPlanningTests
             intent.Name = "FinancialPlanning";
             var result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "What is the amount you need to achieve your financial goal?");
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.GOAL_AMOUNT_QUESTION);
 
             intent.Name = "SetGoalAmount";
             var slot = new Slot();
@@ -55,7 +55,8 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 25000.0);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "How much have you currently saved?");
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 25000.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.INITIAL_SAVINGS_QUESTION);
             slots.Remove(FinancialPlanningSkill.GOAL_AMOUNT_KEY);
 
             intent.Name = "SetIntialSavings";
@@ -65,7 +66,8 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.INITIAL_SAVINGS_KEY], 12000.0);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "What will your monthly contribution be?");
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.INITIAL_SAVINGS_KEY], 12000.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.MONTHLY_CONTRIBUTION_QUESTION);
             slots.Remove(FinancialPlanningSkill.INITIAL_SAVINGS_KEY);
 
             intent.Name = "SetMonthlyContribution";
@@ -75,7 +77,8 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY], 275.0);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "How many months are left until the goal is achieved?");
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY], 275.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.AMOUNT_OF_MONTHS_QUESTION);
             slots.Remove(FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY);
 
             intent.Name = "SetGoalPeriod";
@@ -85,6 +88,7 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, true);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_PERIOD_KEY], 48.0);
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.GOAL_PERIOD_KEY], 48.0);
             Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "The feasability of your goal is High");
         }
 
@@ -96,7 +100,7 @@ namespace FinancialPlanningTests
             intent.Name = "FinancialPlanning";
             var result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "What is the amount you need to achieve your financial goal?");
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.GOAL_AMOUNT_QUESTION);
 
             intent.Name = "SetGoalAmount";
             var slot = new Slot();
@@ -105,7 +109,8 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 26000.0);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "How much have you currently saved?");
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 26000.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.INITIAL_SAVINGS_QUESTION);
             slots.Remove(FinancialPlanningSkill.GOAL_AMOUNT_KEY);
 
             intent.Name = "SetIntialSavings";
@@ -115,7 +120,8 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.INITIAL_SAVINGS_KEY], 11000.0);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "What will your monthly contribution be?");
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.INITIAL_SAVINGS_KEY], 11000.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.MONTHLY_CONTRIBUTION_QUESTION);
             slots.Remove(FinancialPlanningSkill.INITIAL_SAVINGS_KEY);
 
             intent.Name = "SetMonthlyContribution";
@@ -125,7 +131,8 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, false);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY], 150.0);
-            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "How many months are left until the goal is achieved?");
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY], 150.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.AMOUNT_OF_MONTHS_QUESTION);
             slots.Remove(FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY);
 
             intent.Name = "SetGoalPeriod";
@@ -135,6 +142,7 @@ namespace FinancialPlanningTests
             result = skill.FunctionHandler(basicRequest, null);
             Assert.AreEqual(result.Response.ShouldEndSession, true);
             Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_PERIOD_KEY], 12.0);
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.GOAL_PERIOD_KEY], 12.0);
             Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "The feasability of your goal is Low");
         }
 
@@ -248,7 +256,7 @@ namespace FinancialPlanningTests
             var result = skill.FunctionHandler(basicRequest, null);
             var output = result.Response.OutputSpeech;
 
-            Assert.AreEqual((output as PlainTextOutputSpeech).Text, "I can help you achieve your financial goals, to start, tell me how much is necessary to achieve your goal?");
+            Assert.AreEqual((output as PlainTextOutputSpeech).Text, FinancialPlanningSkill.HELP_MESSAGE);
             Assert.AreEqual(result.Response.ShouldEndSession, true);
         }
 
@@ -262,8 +270,64 @@ namespace FinancialPlanningTests
             var result = skill.FunctionHandler(basicRequest, null);
             var output = result.Response.OutputSpeech;
 
-            Assert.AreEqual((output as PlainTextOutputSpeech).Text, "What is the amount you need to achieve your financial goal?");
+            Assert.AreEqual((output as PlainTextOutputSpeech).Text, FinancialPlanningSkill.GOAL_AMOUNT_QUESTION);
             Assert.AreEqual(result.Response.ShouldEndSession, true);
+        }
+
+        [TestMethod]
+        public void ShouldHandleLaunchRequest()
+        {
+            var skill = new FinancialPlanningSkill();
+
+            var request = new SkillRequest();
+            var launch = new LaunchRequest();
+            request.Request = launch;
+
+
+            var result = skill.FunctionHandler(request, null);
+            var output = result.Response.OutputSpeech;
+
+            Assert.AreEqual(result.Response.ShouldEndSession, false);
+        }
+
+        [TestMethod]
+        public void ShouldHandleSessionEnded()
+        {
+            var skill = new FinancialPlanningSkill();
+
+            var request = new SkillRequest();
+            var sessionEnded = new SessionEndedRequest();
+            request.Request = sessionEnded;
+
+
+            var result = skill.FunctionHandler(request, null);
+            var output = result.Response.OutputSpeech;
+
+            Assert.AreEqual(result.Response.ShouldEndSession, true);
+        }
+
+        [TestMethod]
+        public void ShouldBeHighIfInitialSavingsAreHigherThanGoal()
+        {
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 250.0, 12.0, 8000.0), "High");
+            Assert.AreEqual(FeasabilityCalculator.Calculate(8000.0, 250.0, 12.0, 8000.0), "High");
+            Assert.AreEqual(FeasabilityCalculator.Calculate(8000.1, 250.0, 12.0, 8000.0), "High");
+        }
+
+        [TestMethod]
+        public void ShouldBeHighIfAverageReturnIsSufficientToAchieveTarget()
+        {
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 300.0, 44.0, 30_000.0), "High");
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 250.0, 50.0, 30_000.0), "High");
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 500.0, 720, 1000000), "High");
+        }
+
+        [TestMethod]
+        public void ShouldBeLowIfAverageReturnIsSufficientToAchieveTarget()
+        {
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 300.0, 30.0, 30_000.0), "Low");
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 250.0, 20.0, 30_000.0), "Low");
+            Assert.AreEqual(FeasabilityCalculator.Calculate(10_000.0, 300.0, 620, 1000000), "Low");
         }
     }
 }
