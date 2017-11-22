@@ -147,6 +147,76 @@ namespace FinancialPlanningTests
         }
 
         [TestMethod]
+        public void ShouldBeAbleToSetNumberDynamically()
+        {
+            var skill = new FinancialPlanningSkill();
+
+            intent.Name = "FinancialPlanning";
+            var result = skill.FunctionHandler(basicRequest, null);
+            Assert.AreEqual(result.Response.ShouldEndSession, false);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.GOAL_AMOUNT_QUESTION);
+
+            intent.Name = "SetDynamicNumber";
+            var slot = new Slot();
+            slot.Value = "26000";
+            slots[FinancialPlanningSkill.DYNAMIC_NUMBER_KEY] = slot;
+            result = skill.FunctionHandler(basicRequest, null);
+            Assert.AreEqual(result.Response.ShouldEndSession, false);
+            Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 26000.0);
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 26000.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.INITIAL_SAVINGS_QUESTION);
+            slots.Remove(FinancialPlanningSkill.GOAL_AMOUNT_KEY);
+
+            intent.Name = "SetDynamicNumber";
+            slot = new Slot();
+            slot.Value = "11000";
+            slots[FinancialPlanningSkill.DYNAMIC_NUMBER_KEY] = slot;
+            result = skill.FunctionHandler(basicRequest, null);
+            Assert.AreEqual(result.Response.ShouldEndSession, false);
+            Assert.AreEqual(session.Attributes[FinancialPlanningSkill.INITIAL_SAVINGS_KEY], 11000.0);
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.INITIAL_SAVINGS_KEY], 11000.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.MONTHLY_CONTRIBUTION_QUESTION);
+            slots.Remove(FinancialPlanningSkill.INITIAL_SAVINGS_KEY);
+
+            intent.Name = "SetDynamicNumber";
+            slot = new Slot();
+            slot.Value = "150";
+            slots[FinancialPlanningSkill.DYNAMIC_NUMBER_KEY] = slot;
+            result = skill.FunctionHandler(basicRequest, null);
+            Assert.AreEqual(result.Response.ShouldEndSession, false);
+            Assert.AreEqual(session.Attributes[FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY], 150.0);
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY], 150.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, FinancialPlanningSkill.AMOUNT_OF_MONTHS_QUESTION);
+            slots.Remove(FinancialPlanningSkill.MONTHLY_CONTRIBUTION_KEY);
+
+            intent.Name = "SetDynamicNumber";
+            slot = new Slot();
+            slot.Value = "12";
+            slots[FinancialPlanningSkill.DYNAMIC_NUMBER_KEY] = slot;
+            result = skill.FunctionHandler(basicRequest, null);
+            Assert.AreEqual(result.Response.ShouldEndSession, true);
+            Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_PERIOD_KEY], 12.0);
+            Assert.AreEqual(result.SessionAttributes[FinancialPlanningSkill.GOAL_PERIOD_KEY], 12.0);
+            Assert.AreEqual((result.Response.OutputSpeech as PlainTextOutputSpeech).Text, "The feasability of your goal is Low");
+        }
+
+        [TestMethod]
+        public void ShouldSetVersion()
+        {
+            var skill = new FinancialPlanningSkill();
+
+            intent.Name = "SetGoalAmount";
+            var slot = new Slot();
+            slot.Value = "25000";
+
+            slots[FinancialPlanningSkill.GOAL_AMOUNT_KEY] = slot;
+
+            var result = skill.FunctionHandler(basicRequest, null);
+
+            Assert.AreEqual(result.Version, "1.0");
+        }
+
+        [TestMethod]
         public void ShouldBeAbleToSetGoalAmount()
         {
             var skill = new FinancialPlanningSkill();
@@ -157,6 +227,25 @@ namespace FinancialPlanningTests
      
             slots[FinancialPlanningSkill.GOAL_AMOUNT_KEY] = slot;
 
+            var result = skill.FunctionHandler(basicRequest, null);
+            var output = result.Response.OutputSpeech;
+
+            Assert.AreEqual(session.Attributes[FinancialPlanningSkill.GOAL_AMOUNT_KEY], 25000.0);
+            Assert.AreEqual(result.Response.ShouldEndSession, false);
+        }
+
+        [TestMethod]
+        public void ShouldHandleAttributesAreInitiallyNull()
+        {
+            var skill = new FinancialPlanningSkill();
+
+            intent.Name = "SetGoalAmount";
+            var slot = new Slot();
+            slot.Value = "25000";
+
+            slots[FinancialPlanningSkill.GOAL_AMOUNT_KEY] = slot;
+
+            basicRequest.Session.Attributes = null;
             var result = skill.FunctionHandler(basicRequest, null);
             var output = result.Response.OutputSpeech;
 

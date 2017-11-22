@@ -151,5 +151,15 @@ namespace HelloWorldTests
 
             Assert.AreEqual(result.Response.ShouldEndSession, true);
         }
+
+        [TestMethod]
+        public void ShouldSetVersion()
+        {
+            var skill = new HelloWorldSkill();
+
+            var result = skill.FunctionHandler(basicRequest, null);
+
+            Assert.AreEqual(result.Version, "1.0");
+        }
     }
 }

@@ -13,7 +13,7 @@
             ]
         },
         {
-            "intent": "SetIntialSavings",
+            "intent": "SetInitialSavings",
             "slots": [
                 {
                     "name": "InitialSavings",
@@ -35,6 +35,15 @@
             "slots": [
                 {
                     "name": "GoalPeriod",
+                    "type": "AMAZON.NUMBER"
+                }
+            ]
+        },
+        {
+            "intent": "SetDynamicNumber",
+            "slots": [
+                {
+                    "name": "Dynamic",
                     "type": "AMAZON.NUMBER"
                 }
             ]

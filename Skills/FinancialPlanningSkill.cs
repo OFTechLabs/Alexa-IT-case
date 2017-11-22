@@ -18,8 +18,9 @@ namespace FinancialPlanningSkill
         public static string INITIAL_SAVINGS_KEY = "InitialSavings";
         public static string MONTHLY_CONTRIBUTION_KEY = "MonthlyContribution";
         public static string GOAL_PERIOD_KEY = "GoalPeriod";
+        public static string DYNAMIC_NUMBER_KEY = "Dynamic";
 
-        public static string WELCOME_MESSAGE = "Welcome to financial planning.I can help you determine whether your current financial goals are feasable.What is the amount you need to achieve your financial goal?";
+        public static string WELCOME_MESSAGE = "Welcome to financial planning. I can help you determine whether your current financial goals are feasable. What is the amount you need to achieve your financial goal?";
         public static string HELP_MESSAGE = "I can help you achieve your financial goals, to start, tell me how much is necessary to achieve your goal?";
 
         public static string GOAL_AMOUNT_QUESTION = "What is the amount you need to achieve your financial goal?";
@@ -33,14 +34,15 @@ namespace FinancialPlanningSkill
         }
     }
 
-    public class FeasabilityCalculator {
+    public class FeasabilityCalculator
+    {
 
         private static double AVERAGE_ANNUAL_RETURN = 0.114122;
         private static double AVERAGE_MONTHLY_RETURN = AVERAGE_ANNUAL_RETURN / 12.0;
 
         public static string Calculate(double initialSavings, double monthlyContribution, double numberOfMonths, double target)
         {
-            return "";
+            return "High";
         }
-    }
+    } 
 }

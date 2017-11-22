@@ -133,5 +133,15 @@ namespace ScienceFactsTests
 
             Assert.AreEqual(result.Response.ShouldEndSession, true);
         }
+
+        [TestMethod]
+        public void ShouldSetVersion()
+        {
+            var skill = new ScienceFactsSkill();
+
+            var result = skill.FunctionHandler(basicRequest, null);
+
+            Assert.AreEqual(result.Version, "1.0");
+        }
     }
 }

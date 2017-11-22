@@ -3,10 +3,15 @@ FinancialPlanning help achieve goals
 FinancialPlanning financial goals
 SetGoalAmount my goal is {GoalAmount}
 SetGoalAmount my goal amount is {GoalAmount}
-SetIntialSavings my initial savings are {InitialSavings}
-SetIntialSavings savings are {InitialSavings}
+SetGoalAmount the amount is {GoalAmount}
+SetInitialSavings my initial savings are {InitialSavings}
+SetInitialSavings savings are {InitialSavings}
+SetInitialSavings my current savings are {InitialSavings}
 SetMonthlyContribution my monthly contribution is {MonthlyContribution}
+SetMonthlyContribution my monthly contribution will be {MonthlyContribution}
 SetMonthlyContribution my contribution is {MonthlyContribution}
 SetGoalPeriod the goal has to be achieved in {GoalPeriod} months
 SetGoalPeriod in {GoalPeriod} months
 SetGoalPeriod {GoalPeriod} months
+SetGoalPeriod there are {GoalPeriod} months left
+SetDynamicNumber {Dynamic}
