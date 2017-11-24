@@ -46,7 +46,7 @@ Note that the input has to be of type `IntentRequest`, because only `IntentReque
 ```csharp
 public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 {
-	IntentRequest intentRequest = (IntentRequest) input;
+	IntentRequest intentRequest = (IntentRequest) input.Request;
 }
 ```
 
